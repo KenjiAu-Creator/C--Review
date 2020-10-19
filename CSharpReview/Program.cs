@@ -39,7 +39,7 @@ namespace CSharpReview
       {
         Console.WriteLine("Invalid Input: Please enter a name:");
       }
-      else if ( name == "Admin" )
+      else if ((name.ToLower() == "Admin".ToLower()) )
       {
         Console.WriteLine("Administrative access granted.");
       }
