@@ -22,39 +22,39 @@ namespace CSharpReview
       long aLongInt; // BIG Integer values.
       short aShortInt; // small integer values; (~65000 max)
 
+      int userInput;
+      string output;
+      Console.WriteLine("Please enter a number:");
 
-      // Write a prompt
-      // Write will keep the cursor on the same line, WriteLine will not.
-      Console.Write("Please enter your name: ");
+      userInput = int.Parse(Console.ReadLine());
+      // Switch works with discrete values, not ranges like if allows, but osme people find it more readable.
+      // Anything* you can do weith a switch you can do with an if/else.
+      // * Falling through cases is questionable with if/else as you need some other logic,
+      //but its questionable whether that should be done anyways.
 
-      // Input from the consle. Console.ReadLine()
-      // Trim() will remove all leading and trailing whitespace (newlines, spaces, tabs, etc..)
-      name = Console.ReadLine().Trim();
-
-      // Condition is an expression that evalutes to either true or false.
-      // True runs the "if" side, false runs the "else" side.
-      // Roughlt equivalent to name == "", except it also treats null as empty.
-      // White space sohuld be already trimmed, but the extra layer doesn't hurt.
-      if (string.IsNullOrWhiteSpace(name))
+      for (int i =1; i <= userInput; i++ )
       {
-        Console.WriteLine("Invalid Input: Please enter a name:");
+        Console.WriteLine(i);
       }
-      else if ((name.ToLower() == "Admin".ToLower()) )
-      {
-        Console.WriteLine("Administrative access granted.");
-      }
-      else
-      {
-        // Output to the console.
-        // Concatenation.
-        Console.WriteLine("Hello " + name + "! What a nice day!");
 
-        // Parameterized Output.
-        Console.WriteLine("Hello {0}! What a nice day todaty!", name);
-
-        // String interpolation.
-        Console.WriteLine($"Hello {name}! What a nice day today!");
+      // Initialize
+      int y = 1;
+      // Test
+      while (y < userInput)
+      {
+        // Process
+        Console.WriteLine(y);
+        y++;
       }
+
+      // Post-Test Loop. Always runs atleast once, even if condition is false.
+      int z = 1; // Initialize
+      do
+      {
+        Console.WriteLine(z); // Process
+        z++;  // Modify
+      }
+      while (z <= userInput); // Test
     }
   }
   // Exit point of programs in C#.
