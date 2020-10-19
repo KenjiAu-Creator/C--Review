@@ -28,17 +28,33 @@ namespace CSharpReview
       Console.Write("Please enter your name: ");
 
       // Input from the consle. Console.ReadLine()
-      name = Console.ReadLine();
+      // Trim() will remove all leading and trailing whitespace (newlines, spaces, tabs, etc..)
+      name = Console.ReadLine().Trim();
 
-      // Output to the console.
-      // Concatenation.
-      Console.WriteLine("Hello " + name + "! What a nice day!");
+      // Condition is an expression that evalutes to either true or false.
+      // True runs the "if" side, false runs the "else" side.
+      // Roughlt equivalent to name == "", except it also treats null as empty.
+      // White space sohuld be already trimmed, but the extra layer doesn't hurt.
+      if (string.IsNullOrWhiteSpace(name))
+      {
+        Console.WriteLine("Invalid Input: Please enter a name:");
+      }
+      else if ( name == "Admin" )
+      {
+        Console.WriteLine("Administrative access granted.");
+      }
+      else
+      {
+        // Output to the console.
+        // Concatenation.
+        Console.WriteLine("Hello " + name + "! What a nice day!");
 
-      // Parameterized Output.
-      Console.WriteLine("Hello {0}! What a nice day todaty!", name);
+        // Parameterized Output.
+        Console.WriteLine("Hello {0}! What a nice day todaty!", name);
 
-      // String interpolation.
-      Console.WriteLine($"Hello {name}! What a nice day today!");
+        // String interpolation.
+        Console.WriteLine($"Hello {name}! What a nice day today!");
+      }
     }
   }
   // Exit point of programs in C#.
