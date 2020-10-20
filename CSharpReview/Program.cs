@@ -59,33 +59,38 @@ namespace CSharpReview
 
       // Arrays in C# are fixed-length collections of items.
       // [0, 1, 2, 3, 4]
-      int[] intArray = new int[5];
+      int[] intArray = new int[GetInt("Please enter in the size of the array")];
 
       // IF we want to set itm just like most other languages, we can set an element by assigning an index.
-
       intArray[3] = 10;
 
       for (int i =0; i < intArray.Length; i++ )
       {
-        Console.WriteLine(intArray[i]);
+        intArray[i] = GetInt("Please enter in an integer");
       }
 
-      /*
-       * static: Tells C# tto only keep one copy of the method in memory (important for OOP)
-       * int: Return type, the type of data coming out of the method.
-       * GetInt: Name of the method, how we call it.
-       * string: First parameter type, the type of input expected.
-       * prompt: First parameter / arguement name, how we refer to that value in the method.
-       */
-
-      static int GetInt(string Prompt)
+      // foreach will loop over every item in a collection, however theyt are typically treated as readonly (with "normal" data types anyway.)
+      foreach( int integer in intArray)
       {
-
-        int input;
-        Console.WriteLine(Prompt);
-        input = int.Parse(Console.ReadLine());
-        return input;
+        Console.WriteLine(integer);
       }
+    }
+
+    /*
+     * static: Tells C# tto only keep one copy of the method in memory (important for OOP)
+     * int: Return type, the type of data coming out of the method.
+     * GetInt: Name of the method, how we call it.
+     * string: First parameter type, the type of input expected.
+     * prompt: First parameter / arguement name, how we refer to that value in the method.  
+     */
+
+    static int GetInt(string Prompt)
+    {
+
+      int input;
+      Console.WriteLine(Prompt);
+      input = int.Parse(Console.ReadLine());
+      return input;
     }
   }
   // Exit point of programs in C#.
