@@ -152,6 +152,10 @@ namespace CSharpReview
         }
       } while (!(personName.ToLower() == "exit"));
 
+      for (int i = 0; i < peopleName.Count; i++)
+      {
+        Console.WriteLine($"{peopleName[i]} is {peopleAge[i]} years old.");
+      }
     }
 
     /*
