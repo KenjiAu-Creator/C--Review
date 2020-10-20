@@ -83,10 +83,46 @@ namespace CSharpReview
           intList.Add(userInput2);
         }
       } while (userInput2 > 0);
+
+      // In class practice:
+      // Change the program to tkae in a list of names. Make sure the names are trimmed before they enter the list.
+      // Change the GetInt() method to GetName()
+      // Challenge: Prevent duplicates (Case insensitive) from being added.
+
+      List<string> nameList = new List<string>();
+      string studentName = "a";
+      do
+      {
+        studentName = GetName("Please enter in the students name. Please enter in q to exit.");
+
+        // Using the built in contains method for lists
+/*        if (!nameList.Contains(studentName))
+        {
+          nameList.Add(studentName);
+        }*/
+
+        int count = 0;
+        foreach( string nameInList in nameList)
+        {
+          if (nameInList.ToLower() == studentName.ToLower())
+          {
+            count++;
+          }
+        }
+
+        if (count < 1)
+        {
+          nameList.Add(studentName);
+        }
+        else
+        {
+          Console.WriteLine("That name is already in the list!");
+        }
+      } while (studentName != "q");
     }
 
     /*
-     * static: Tells C# tto only keep one copy of the method in memory (important for OOP)
+     * static: Tells C# to only keep one copy of the method in memory (important for OOP)
      * int: Return type, the type of data coming out of the method.
      * GetInt: Name of the method, how we call it.
      * string: First parameter type, the type of input expected.
@@ -99,6 +135,14 @@ namespace CSharpReview
       int input;
       Console.WriteLine(Prompt);
       input = int.Parse(Console.ReadLine());
+      return input;
+    }
+
+    static string GetName(string Prompt)
+    {
+      string input;
+      Console.WriteLine(Prompt);
+      input = Console.ReadLine();
       return input;
     }
   }
