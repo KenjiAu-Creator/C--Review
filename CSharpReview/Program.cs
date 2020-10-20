@@ -222,6 +222,34 @@ namespace CSharpReview
       return input;
     }
 
+    // "Overloading" a method refers to having multiple method signatures with the same name, but different parameters.
+    static int GetInt(string prompt, int min, int max)
+    {
+      int input = 0;
+      bool valid = false;
+      // "Validation Loop"
+      do
+      {
+        Console.Write(prompt);
+        try
+        {
+          input = int.Parse(Console.ReadLine());
+          if (input < min || input > max)
+          {
+            throw new Exception($"The supplied value must be between {min} and {max} inclusive.");
+          }
+          valid = true;
+        }
+        catch (Exception e)
+        {
+          Console.WriteLine($"Error: {e.Message}");
+        }
+      }
+      while (!valid);
+
+      return input;
+    }
+
     static string GetName(string Prompt)
     {
       string input;
