@@ -148,18 +148,25 @@ namespace CSharpReview
 
       int input;
       bool valid = false;
-      Console.WriteLine(Prompt);
+      int min = 5;
+      int max = 10;
+      
       do
       {
+        Console.WriteLine(Prompt);
         try
         {
           input = int.Parse(Console.ReadLine());
+          if (input < min || input > max)
+          {
+            throw new Exception($"The supplied value must be betwen {min} and {max}");
+          }
           valid = true;
           return input;
         }
-        catch
+        catch (Exception e)
         {
-          Console.WriteLine("ERROR: Invalid Integer");
+          Console.WriteLine($"ERROR: {e.message}");
         }
         // Validation loop
       } while (!valid);
