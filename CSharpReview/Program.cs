@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks.Dataflow;
 
 namespace CSharpReview
@@ -61,9 +62,6 @@ namespace CSharpReview
       // [0, 1, 2, 3, 4]
       int[] intArray = new int[GetInt("Please enter in the size of the array")];
 
-      // IF we want to set itm just like most other languages, we can set an element by assigning an index.
-      intArray[3] = 10;
-
       for (int i =0; i < intArray.Length; i++ )
       {
         intArray[i] = GetInt("Please enter in an integer");
@@ -74,6 +72,17 @@ namespace CSharpReview
       {
         Console.WriteLine(integer);
       }
+
+      List<int> intList = new List<int>();
+      int userInput2 = 1;
+      do
+      {
+        userInput2 = GetInt("Please enter a positive integer to add to the list, or negative one to exit:");
+        if (userInput2 > 0)
+        {
+          intList.Add(userInput2);
+        }
+      } while (userInput2 > 0);
     }
 
     /*
