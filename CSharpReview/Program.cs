@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks.Dataflow;
 
 namespace CSharpReview
@@ -30,9 +31,9 @@ namespace CSharpReview
 
       userInput = int.Parse(Console.ReadLine());
       // Switch works with discrete values, not ranges like if allows, but osme people find it more readable.
-      // Anything* you can do weith a switch you can do with an if/else.
+      // Anything* you can do with a switch you can do with an if/else.
       // * Falling through cases is questionable with if/else as you need some other logic,
-      //but its questionable whether that should be done anyways.
+      // but its questionable whether that should be done anyways.
 
       for (int i =1; i <= userInput; i++ )
       {
@@ -100,6 +101,18 @@ namespace CSharpReview
         {
           nameList.Add(studentName);
         }*/
+        
+        // James in-class method to solve using exist.
+        /*
+        if (nameList.Exists(x => x.ToUpper() == studentName.ToUpper())
+        {
+          Console.WriteLine("That name is already i nthe list!");
+        }
+        else
+        {
+          nameList.Add(studentName);
+        }
+        */
 
         int count = 0;
         foreach( string nameInList in nameList)
@@ -118,6 +131,7 @@ namespace CSharpReview
         {
           Console.WriteLine("That name is already in the list!");
         }
+        // Sentinel value loop
       } while (studentName != "q");
     }
 
@@ -133,9 +147,22 @@ namespace CSharpReview
     {
 
       int input;
+      bool valid = false;
       Console.WriteLine(Prompt);
-      input = int.Parse(Console.ReadLine());
-      return input;
+      do
+      {
+        try
+        {
+          input = int.Parse(Console.ReadLine());
+          valid = true;
+          return input;
+        }
+        catch
+        {
+          Console.WriteLine("ERROR: Invalid Integer");
+        }
+        // Validation loop
+      } while (!valid);
     }
 
     static string GetName(string Prompt)
