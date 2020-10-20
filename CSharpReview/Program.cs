@@ -5,6 +5,17 @@ using System.Threading.Tasks.Dataflow;
 
 namespace CSharpReview
 {
+  class Person
+  {
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public Person(string personName, int personAge)
+    {
+      Name = personName;
+      Age = personAge;
+    }
+  }
+
   class Program
   {
     // Entry point of programs in C#
@@ -138,9 +149,11 @@ namespace CSharpReview
       // Combine the two programs we've looked at. Prompt for both a name, and a age (between 1 and 100), until the name entered is "exit"
       // Once exited output "$name is $age years old". for each stored person
       // Hint: you'll need multiple arrays
+      // Challenge: create a class/object to store the name and age, and only use one list.
       string personName;
       List<string> peopleName = new List<string>();
       List<int> peopleAge = new List<int>();
+      List<Person> people = new List<Person>();
       do
       {
         personName = GetName("Please enter the individual's name. Enter \"exit\" to close the program.");
@@ -149,6 +162,10 @@ namespace CSharpReview
           int personAge = GetInt("Please enter the individual's age.");
           peopleName.Add(personName);
           peopleAge.Add(personAge);
+
+          // OOP method
+          Person guy = new Person(personName, personAge);
+          people.Add(guy);
         }
       } while (!(personName.ToLower() == "exit"));
 
@@ -156,7 +173,14 @@ namespace CSharpReview
       {
         Console.WriteLine($"{peopleName[i]} is {peopleAge[i]} years old.");
       }
+
+      // OOP method.
+      foreach (Person person in people)
+      {
+        Console.WriteLine($"{person.Name} is {person.Age} years old.");
+      }
     }
+
 
     /*
      * static: Tells C# to only keep one copy of the method in memory (important for OOP)
