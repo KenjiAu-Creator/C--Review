@@ -10,7 +10,7 @@ namespace CSharpReview
     // Entry point of programs in C#
     static void Main(string[] args)
     {
-      // Declaration of variable.
+/*      // Declaration of variable.
       string name; // String value.
 
 
@@ -84,26 +84,26 @@ namespace CSharpReview
           intList.Add(userInput2);
         }
       } while (userInput2 > 0);
-
+*/
       // In class practice:
       // Change the program to tkae in a list of names. Make sure the names are trimmed before they enter the list.
       // Change the GetInt() method to GetName()
       // Challenge: Prevent duplicates (Case insensitive) from being added.
 
-      List<string> nameList = new List<string>();
+/*      List<string> nameList = new List<string>();
       string studentName = "a";
       do
       {
         studentName = GetName("Please enter in the students name. Please enter in q to exit.");
 
         // Using the built in contains method for lists
-/*        if (!nameList.Contains(studentName))
+*//*        if (!nameList.Contains(studentName))
         {
           nameList.Add(studentName);
-        }*/
+        }*//*
         
         // James in-class method to solve using exist.
-        /*
+        *//*
         if (nameList.Exists(x => x.ToUpper() == studentName.ToUpper())
         {
           Console.WriteLine("That name is already i nthe list!");
@@ -112,7 +112,7 @@ namespace CSharpReview
         {
           nameList.Add(studentName);
         }
-        */
+        *//*
 
         int count = 0;
         foreach( string nameInList in nameList)
@@ -133,6 +133,25 @@ namespace CSharpReview
         }
         // Sentinel value loop
       } while (studentName != "q");
+*/
+      // In class practice:
+      // Combine the two programs we've looked at. Prompt for both a name, and a age (between 1 and 100), until the name entered is "exit"
+      // Once exited output "$name is $age years old". for each stored person
+      // Hint: you'll need multiple arrays
+      string personName;
+      List<string> peopleName = new List<string>();
+      List<int> peopleAge = new List<int>();
+      do
+      {
+        personName = GetName("Please enter the individual's name. Enter \"exit\" to close the program.");
+        if (personName.ToLower() != "exit")
+        {
+          int personAge = GetInt("Please enter the individual's age.");
+          peopleName.Add(personName);
+          peopleAge.Add(personAge);
+        }
+      } while (!(personName.ToLower() == "exit"));
+
     }
 
     /*
@@ -146,10 +165,10 @@ namespace CSharpReview
     static int GetInt(string Prompt)
     {
 
-      int input;
+      int input = 0;
       bool valid = false;
-      int min = 5;
-      int max = 10;
+      int min = 1;
+      int max = 100;
       
       do
       {
@@ -161,15 +180,18 @@ namespace CSharpReview
           {
             throw new Exception($"The supplied value must be betwen {min} and {max}");
           }
-          valid = true;
-          return input;
+          else
+          {
+            valid = true;
+          }
         }
         catch (Exception e)
         {
-          Console.WriteLine($"ERROR: {e.message}");
+          Console.WriteLine($"ERROR: {e.Message}");
         }
         // Validation loop
       } while (!valid);
+      return input;
     }
 
     static string GetName(string Prompt)
